@@ -39,7 +39,7 @@ class InstallCommand extends Command
     public function handle()
     {
 
-        if (!$this->promptConfirmation || $this->confirm("Confirm installation ?") || $this->argument('--force') !== null ) {
+        if (!$this->promptConfirmation || $this->option('force') || $this->confirm("Confirm installation ?")  ) {
 
             $this->line('--------------------------------');
             $this->line('|   Medkit theme');
