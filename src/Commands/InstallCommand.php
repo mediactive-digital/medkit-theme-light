@@ -14,7 +14,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'medkit-theme-light:install {--force}';
+    protected $signature = 'medkit-theme:install {--force}';
     protected $description = 'Installation du theme';
 
     
@@ -42,7 +42,7 @@ class InstallCommand extends Command
         if (!$this->promptConfirmation || $this->confirm("Confirm installation ?") || $this->argument('--force') !== null ) {
 
             $this->line('--------------------------------');
-            $this->line('|   Medkit theme light');
+            $this->line('|   Medkit theme');
             $this->line('--------------------------------');
             $this->line('Copying theme files');
             $this->copyFolder(__DIR__ . '/../../publishable/', base_path());
