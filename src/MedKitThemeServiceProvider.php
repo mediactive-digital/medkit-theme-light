@@ -32,7 +32,7 @@ class MedKitThemeServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/medkittheme.php', 'medkittheme');
+        //$this->mergeConfigFrom(__DIR__.'/../config/medkittheme.php', 'medkittheme');
 
         // Register the service the package provides.
         $this->app->singleton('medkittheme', function ($app) {
