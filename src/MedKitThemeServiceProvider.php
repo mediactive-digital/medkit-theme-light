@@ -62,27 +62,6 @@ class MedKitThemeServiceProvider extends ServiceProvider
      */
     protected function bootForConsole()
     {
-        // Publishing the configuration file.
-        $this->publishes([
-            __DIR__.'/../config/medkittheme.php' => config_path('medkittheme.php'),
-        ], 'medkittheme.config');
 
-        // Publishing the views.
-        /*$this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/mediactivedigital'),
-        ], 'medkittheme.views');*/
-
-        // Publishing assets.
-        /*$this->publishes([
-            __DIR__.'/../resources/assets' => public_path('vendor/mediactivedigital'),
-        ], 'medkittheme.views');*/
-
-        // Publishing the translation files.
-        /*$this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/mediactivedigital'),
-        ], 'medkittheme.views');*/
-
-        // Registering package commands.
-        // $this->commands([]);
     }
 }

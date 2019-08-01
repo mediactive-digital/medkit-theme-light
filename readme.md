@@ -13,7 +13,7 @@ Take a look at [contributing.md](contributing.md) to see a to do list.
 Via Composer
 
 ``` bash
-$ composer require mediactivedigital/medkittheme
+$ composer require mediactivedigital/medkit-theme
 ```
 
 
@@ -24,7 +24,7 @@ $ composer require mediactivedigital/medkittheme
 To install : 
 
 ```bash
-php artisan medkit-theme-light:install
+php artisan medkit-theme:install
 ```
 
 ## Change log
