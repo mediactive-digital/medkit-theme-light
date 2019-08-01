@@ -1,0 +1,47 @@
+
+@import './config/setups/light.scss';
+@import './config/fonts.scss';
+@import 'sweetalert2/src/sweetalert2.scss';
+@import 'bootstrap/scss/bootstrap.scss';
+// @import '~speechkitt/dist/themes/flat.css';
+// @import '~../partials/general.css';
+// @import '~../vendors/tarteaucitron.css';
+
+/*=====
+SETTINGS
+=====*/
+@import './config/mixins';
+// @import '../settings/font';
+@import './config/layout';
+
+@import './partials/sidebar';
+@import './partials/surcharge';
+
+/*=====
+COMPONENTS
+=====*/
+// @import '../components/title';
+// @import '../components/breadcrumb';
+// @import '../components/tchatbot';
+// @import '../components/datatables';
+// @import '../components/dropdowns';
+// @import '../components/accordions';
+// @import '../components/leaflet';
+// @import '../components/button';
+// @import '../components/forms';
+// @import '../components/badge';
+// @import '../components/cards';
+// @import '../components/medias';
+// @import '../components/header';
+// @import '../components/pagination';
+// @import '../components/navs';
+// @import '../components/modal';
+// @import '../components/ttc';
+// @import '../components/footer';
+// @import '../components/lang';
+// @import '../components/print';
+
+/*=====
+PAGES
+=====*/
+// @import '../pages/home.scss';

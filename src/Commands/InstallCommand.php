@@ -41,7 +41,7 @@ class InstallCommand extends Command
 
         if (!$this->promptConfirmation || $this->confirm("Confirm installation ?")) {
             $this->line('Copying theme files');
-            $this->copyFolder(__DIR__ . '/files/', base_path());
+            $this->copyFolder(__DIR__ . '/../../publishable/', base_path());
             $this->line('Theme ready.');
         }
     }

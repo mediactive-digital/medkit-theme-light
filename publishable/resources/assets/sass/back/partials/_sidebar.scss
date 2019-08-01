@@ -1,0 +1,24 @@
+.sidebar {
+	box-shadow: $sidebar-shadow;
+	position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: $sidebar-index;
+    width: $sidebar-width;
+	background: $sidebar-bg;
+	.logo {
+		padding: $sidebar-logo-x $sidebar-logo-y;
+		a {
+			padding: $sidebar-logo-link-space-x $sidebar-logo-link-space-y;
+		}
+	}
+	.nav {
+		flex-direction: $sidebar-orientation;
+	}
+	.has-submenu {
+		.nav {
+			display: none;
+		}
+	}
+}
