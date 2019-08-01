@@ -1,4 +1,4 @@
-# MedKitThemeLight
+# MedKitTheme
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
@@ -13,7 +13,7 @@ Take a look at [contributing.md](contributing.md) to see a to do list.
 Via Composer
 
 ``` bash
-$ composer require mediactivedigital/medkitthemelight
+$ composer require mediactivedigital/medkittheme
 ```
 
 
@@ -49,14 +49,14 @@ If you discover any security related issues, please email author email instead o
 
 license. Please see the [license file](license.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/mediactivedigital/medkitthemelight.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/mediactivedigital/medkitthemelight.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/mediactivedigital/medkitthemelight/master.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/mediactivedigital/medkittheme.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/mediactivedigital/medkittheme.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/mediactivedigital/medkittheme/master.svg?style=flat-square
 [ico-styleci]: https://styleci.io/repos/12345678/shield
 
-[link-packagist]: https://packagist.org/packages/mediactivedigital/medkitthemelight
-[link-downloads]: https://packagist.org/packages/mediactivedigital/medkitthemelight
-[link-travis]: https://travis-ci.org/mediactivedigital/medkitthemelight
+[link-packagist]: https://packagist.org/packages/mediactivedigital/medkittheme
+[link-downloads]: https://packagist.org/packages/mediactivedigital/medkittheme
+[link-travis]: https://travis-ci.org/mediactivedigital/medkittheme
 [link-styleci]: https://styleci.io/repos/12345678
 [link-author]: https://github.com/mediactivedigital
 [link-contributors]: ../../contributors

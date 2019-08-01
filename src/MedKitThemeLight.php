@@ -1,8 +1,8 @@
 <?php
 
-namespace MediactiveDigital\MedKitThemeLight;
+namespace MediactiveDigital\MedKitTheme;
 
-class MedKitThemeLight
+class MedKitTheme
 {
     // Build wonderful things
 }

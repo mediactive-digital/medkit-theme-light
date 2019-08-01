@@ -1,11 +1,11 @@
 <?php
 
-namespace MediactiveDigital\MedKitThemeLight;
-use MediactiveDigital\MedKitThemeLight\Commands\InstallCommand;
+namespace MediactiveDigital\MedKitTheme;
+use MediactiveDigital\MedKitTheme\Commands\InstallCommand;
 
 use Illuminate\Support\ServiceProvider;
 
-class MedKitThemeLightServiceProvider extends ServiceProvider
+class MedKitThemeServiceProvider extends ServiceProvider
 {
     /**
      * Perform post-registration booting of services.
@@ -32,11 +32,11 @@ class MedKitThemeLightServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/medkitthemelight.php', 'medkitthemelight');
+        $this->mergeConfigFrom(__DIR__.'/../config/medkittheme.php', 'medkittheme');
 
         // Register the service the package provides.
-        $this->app->singleton('medkitthemelight', function ($app) {
-            return new MedKitThemeLight;
+        $this->app->singleton('medkittheme', function ($app) {
+            return new MedKitTheme;
         });
 
         $this->commands([
@@ -52,7 +52,7 @@ class MedKitThemeLightServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['medkitthemelight'];
+        return ['medkittheme'];
     }
     
     /**
@@ -64,23 +64,23 @@ class MedKitThemeLightServiceProvider extends ServiceProvider
     {
         // Publishing the configuration file.
         $this->publishes([
-            __DIR__.'/../config/medkitthemelight.php' => config_path('medkitthemelight.php'),
-        ], 'medkitthemelight.config');
+            __DIR__.'/../config/medkittheme.php' => config_path('medkittheme.php'),
+        ], 'medkittheme.config');
 
         // Publishing the views.
         /*$this->publishes([
             __DIR__.'/../resources/views' => base_path('resources/views/vendor/mediactivedigital'),
-        ], 'medkitthemelight.views');*/
+        ], 'medkittheme.views');*/
 
         // Publishing assets.
         /*$this->publishes([
             __DIR__.'/../resources/assets' => public_path('vendor/mediactivedigital'),
-        ], 'medkitthemelight.views');*/
+        ], 'medkittheme.views');*/
 
         // Publishing the translation files.
         /*$this->publishes([
             __DIR__.'/../resources/lang' => resource_path('lang/vendor/mediactivedigital'),
-        ], 'medkitthemelight.views');*/
+        ], 'medkittheme.views');*/
 
         // Registering package commands.
         // $this->commands([]);

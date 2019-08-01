@@ -1,6 +1,6 @@
 <?php
 
-namespace MediactiveDigital\MedKitThemeLight\Commands;
+namespace MediactiveDigital\MedKitTheme\Commands;
 
 use Illuminate\Console\Command;
 
@@ -14,10 +14,10 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'medkit-theme-light:install';
+    protected $signature = 'medkit-theme-light:install {--force}';
     protected $description = 'Installation du theme';
 
-    private $pathToPackageRoot = __DIR__ . '/../../';
+    
     private $promptConfirmation = true;
 
 
@@ -39,10 +39,14 @@ class InstallCommand extends Command
     public function handle()
     {
 
-        if (!$this->promptConfirmation || $this->confirm("Confirm installation ?")) {
+        if (!$this->promptConfirmation || $this->confirm("Confirm installation ?") || $this->argument('--force') !== null ) {
+
+            $this->line('--------------------------------');
+            $this->line('|   Medkit theme light');
+            $this->line('--------------------------------');
             $this->line('Copying theme files');
             $this->copyFolder(__DIR__ . '/../../publishable/', base_path());
-            $this->line('Theme ready.');
+            $this->info('Theme ready.');
         }
     }
 

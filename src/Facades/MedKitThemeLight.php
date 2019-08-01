@@ -1,10 +1,10 @@
 <?php
 
-namespace MediactiveDigital\MedKitThemeLight\Facades;
+namespace MediactiveDigital\MedKitTheme\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class MedKitThemeLight extends Facade
+class MedKitTheme extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -13,6 +13,6 @@ class MedKitThemeLight extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'medkitthemelight';
+        return 'medkittheme';
     }
 }
