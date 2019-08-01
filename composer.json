@@ -1,0 +1,45 @@
+{
+    "name": "mediactive-digital/medkit-theme-light",
+    "description": "Theme boilerplate for mediactive-digital/medkit",
+    "license": "license",
+    "authors": [
+        {
+            "name": "Mediactive Digital",
+            "email": "dev@mediactive.fr",
+            "homepage": "https://www.mediactive-digital.com/"
+        }
+    ],
+    "homepage": "https://github.com/mediactive-digital/medkit-theme-light",
+    "keywords": ["Laravel", "MedKit", "boilerplate"],
+    "require": {
+        "illuminate/support": "~5",
+        "lavary/laravel-menu" : "^1.7",
+        "mediactive-digital/medkit" : "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.0",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "~3.0",
+        "sempro/phpunit-pretty-print": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MediactiveDigital\\MedKitThemeLight\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MediactiveDigital\\MedKitThemeLight\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MediactiveDigital\\MedKitThemeLight\\MedKitThemeLightServiceProvider"
+            ],
+            "aliases": {
+                "MedKitThemeLight": "MediactiveDigital\\MedKitThemeLight\\Facades\\MedKitThemeLight"
+            }
+        }
+    }
+}
