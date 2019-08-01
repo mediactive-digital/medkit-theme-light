@@ -1,7 +1,7 @@
 {
     "name": "mediactive-digital/medkit-theme",
     "description": "Theme boilerplate for mediactive-digital/medkit",
-    "license": "license",
+    "license": "MIT",
     "authors": [
         {
             "name": "Mediactive Digital",
