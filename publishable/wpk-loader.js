@@ -6,6 +6,8 @@ require('laravel-mix-purgecss');
 const imagemin = require('imagemin');
 const imageminWebp = require('imagemin-webp');
 const jsonfile = require('jsonfile');
+const os = require('os');
+
 
 
 
@@ -40,23 +42,22 @@ const default_folders = {
  
  const default_opts = {
      typeLoad : 'basic', // front / back / custom / basic
-     recursive : true,
-     logger: true,
+     recursive : true, // tell how the file finder work
+     logger: true, // just logger in v3
      purgeCssOptions : {
-         enabled: true
+         enabled: true // purge css options availables here https://github.com/spatie/laravel-mix-purgecss
      },
-     webp: false,
-     webpOptions: {
-         quality: 70
+     webp: false, // tell if you wants images webp generation for your projet
+     webpOptions: { // options of this plugins to generate webp formats https://github.com/imagemin/imagemin-webp
+         quality: 70 
      },
-     mixOptions : {},
-     mixOverride : (mixInstance) => {} 
+     mixOverride : (mixInstance) => {} // a hook to surcache mix options like mix.webpackConfig()
   }
 
   class WpkLoader {
       constructor(opts) {
-        typeof opts === 'object' && opts.folders ? this.folders = Object.assign(opts.folders, default_folders) : this.folders = default_folders
-        typeof opts === 'object' && opts.options ? this.options = Object.assign(opts.options, default_opts) : this.options = default_opts
+        typeof opts === 'object' && opts.folders ? this.folders = Object.assign(default_folders, opts.folders) : this.folders = default_folders
+        typeof opts === 'object' && opts.options ? this.options = Object.assign(default_opts, opts.options) : this.options = default_opts
         this.paths = {
             jsPath: path.join(this.folders.cwd, this.folders.resources, this.folders.assets, this.folders.js),
             sassPath: path.join(this.folders.cwd, this.folders.resources, this.folders.assets, this.folders.sass),
@@ -127,13 +128,13 @@ const default_folders = {
                 }
                 
             });
-            // console.log('debug folder recursive', filelist)
+            //  console.log('debug folder recursive', filelist)
             return filelist;
       }
       isFile(str) {
         let rt = false;
         // // console.log('isFile debug', str)
-        var fileSpl = str.split('/');
+        var fileSpl = os.platform() != 'win32' ? str.split('/') : str.split('\\');
         var filetoTest = fileSpl[fileSpl.length - 1];
         // console.log('file to test', filetoTest)
         if(filetoTest.endsWith('.js') || filetoTest.endsWith('.sass') || filetoTest.endsWith('.scss')) {
@@ -142,7 +143,8 @@ const default_folders = {
         return rt;
       }
       getFile(str) {
-        var fileSpl = str.split('/');
+        //   console.log('hostname os', os.platform())
+        var fileSpl =  os.platform() != 'win32' ? str.split('/') : str.split('\\');
         var filetoTest = fileSpl[fileSpl.length - 1];
         return filetoTest;
       }
@@ -179,7 +181,7 @@ const default_folders = {
             for (const key in obj) {
                 if (obj.hasOwnProperty(key)) {
                     const element = obj[key];
-                    console.log('element', element)
+                    // console.log('element', element)
                     var file = that.getFile(key);
 
                     if(that.isFrontorBack(element) === that.folders.front || that.isFrontorBack(element) === that.folders.back) {
@@ -220,23 +222,12 @@ const default_folders = {
             });
         }
         
-        
+        console.log('links', links)
         
         links.forEach((linked) => {
-            // console.log('linked', linked)
             mix[linked.type === 'js' ? 'js' : 'sass'](linked.pathFile, linked.pathDest).purgeCss(this.options.purgeCssOptions).version()
-            
-            
-            
-            
         })
         mix.then((stats) => {
-            // array of all asset paths output by webpack
-            // console.log(Object.keys(stats.compilation.assets));
-            // console.log(Object.keys(stats.hash));
-            // console.log(stats.hash);
-            
-            // console.log(Object.keys(stats.compilation));
             this.manifestProcess();
        });
 
@@ -287,14 +278,12 @@ const default_folders = {
             Array.prototype.push.apply(fileLocated, this.linkBuilder(localFileLocalizated, true));
             
         })
-        // console.log('fileLocated', fileLocated)
         return fileLocated;
         
       }
       fileAnalyser(link) {
         let rt = {mime: '', compile: ''};
-        var fileSpl = link.split('/');
-        // console.log('debug', link)
+        var fileSpl = os.platform() != 'win32' ? link.split('/') : link.split('\\');
         var file = fileSpl[fileSpl.length - 1];
         if(file.endsWith('.sass') && !file.startsWith('_') || file.endsWith('.scss') && !file.startsWith('_')) {
             rt = { mime : 'sass', compile: true };
@@ -307,6 +296,9 @@ const default_folders = {
         }
         else if(file.endsWith('.js') && file.startsWith('_')) {
             rt = { mime : 'js', compile: false };
+        }
+        else if(file === '.DS_Store') {
+            rt = { mime : 'system', compile: false };
         }
         else {
             throw new Error('File type is not recognized (File: '+ file +')');

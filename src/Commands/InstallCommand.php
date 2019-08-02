@@ -3,7 +3,7 @@
 namespace MediactiveDigital\MedKitTheme\Commands;
 
 use Illuminate\Console\Command;
-
+use Symfony\Component\Process\Process;
 
 class InstallCommand extends Command
 {
@@ -47,6 +47,9 @@ class InstallCommand extends Command
             $this->line('Copying theme files');
             $this->copyFolder(__DIR__ . '/../../publishable/', base_path());
             $this->info('Theme ready.');
+
+            $this->doCommand( 'npm install' );
+            $this->doCommand('npm run dev');
         }
     }
 
@@ -68,5 +71,23 @@ class InstallCommand extends Command
             }
         }
         closedir($dir);
+    }
+
+
+
+    /**
+     * Execute a command
+     *
+     * @param [type] $command
+     * @return void
+     */
+    private function doCommand($command)
+    {
+        $process = new Process($command);
+        $process->setTimeout(null); // Setting timeout to null to prevent installation from stopping at a certain point in time
+
+        $process->setWorkingDirectory(base_path())->run(function ($type, $buffer) {
+            $this->line($buffer);
+        });
     }
 }

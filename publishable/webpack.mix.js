@@ -1,4 +1,5 @@
-// console.log('mix opts', mix);
+let WebpackConfigLoader = require('./wpk-loader.js');
+
 let wpk = new WebpackConfigLoader({
     options: {
         typeLoad : 'all' // front / back / custom / basic
@@ -13,5 +14,6 @@ let wpk = new WebpackConfigLoader({
         // },
         // mixOverride : (mixInstance) => {} // a hook to surcache mix options like mix.webpackConfig()
      }
-});
-wpk.run();
+})
+
+wpk.run()
