@@ -30,12 +30,12 @@
 
         if ($user) {
 
-            $styles[] = 'back.theme.' . ($user->theme ? 'dark' : 'light');
+            $styles[] = 'back.' . ($user->theme ? 'dark' : 'light');
         }
     @endphp
 
     {!! MDAsset::addCss($styles) !!}
-   
+
     @stack('post-styles')
 
     @routes
@@ -58,34 +58,34 @@
                 <div id="flash-messages">
                     @include('_layouts.back.partials.flash_messages')
                 </div>
-                    
+
                 @yield('content')
         </main>
     </div>
-   
+
 
     <div class="container-fluid">
         <div class="row">
-           
-          
-            
+
+
+
         </div>
     </div>
 
     @include('_layouts.back.partials.footer')
-    
+
     <!-- Translations -->
     {!! Translation::get() !!}
 
     <!-- General Theme script -->
     {!! MDAsset::addJs('back.default') !!}
 
-   
+
 
     <!-- Custom scripts required -->
     @stack('scripts')
 
-    {!! MDAsset::addJs('back.app') !!}
+    {!! MDAsset::addJs('back.default') !!}
 
     @stack('post-scripts')
 </body>

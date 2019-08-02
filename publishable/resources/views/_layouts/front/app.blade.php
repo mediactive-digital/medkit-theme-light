@@ -19,13 +19,13 @@
     {{-- {!! MDAsset::addCss('back.theme.default') !!} --}}
 
 
-    {!! MDAsset::addCss('back.theme.light') !!}
+    {!! MDAsset::addCss('back.light') !!}
 
     <!-- Custom styles -->
     @stack('styles')
 
     {{-- {!! MDAsset::addCss(['main']) !!} --}}
-   
+
     @stack('post-styles')
 
     <!-- Scripts -->
@@ -54,12 +54,12 @@
     <!-- General Theme script -->
     {!! MDAsset::addJs('back.default') !!}
 
-    
+
 
     <!-- Custom scripts required -->
     @stack('scripts')
 
-    {!! MDAsset::addJs('back.app') !!}
+    {!! MDAsset::addJs('back.default') !!}
 
     @stack('post-scripts')
 </body>
