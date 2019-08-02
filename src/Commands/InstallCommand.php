@@ -46,10 +46,15 @@ class InstallCommand extends Command
             $this->line('--------------------------------');
             $this->line('Copying theme files');
             $this->copyFolder(__DIR__ . '/../../publishable/', base_path());
-            $this->info('Theme ready.');
+           
+
+            $this->info('Waiting for NPM ... ');
 
             $this->doCommand( 'npm install' );
             $this->doCommand('npm run dev');
+
+
+            $this->info('Theme ready.');
         }
     }
 

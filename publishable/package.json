@@ -10,6 +10,9 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
+        "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
         "bootstrap": "^4.3.1",
         "cross-env": "^5.1",
         "jquery": "^3.3.1",
@@ -18,16 +21,15 @@
         "resolve-url-loader": "^2.3.2",
         "sass": "^1.17.3",
         "sass-loader": "^7.1.0",
-        "vue-template-compiler": "^2.6.10"
-    },
-    "dependencies": {
         "@babel/polyfill": "^7.4.0",
         "datatables.net": "^1.10.19",
         "datatables.net-bs4": "^1.10.19",
         "datatables.net-src": "git+https://github.com/DataTables/DataTablesSrc.git#1.10.19",
         "gsap": "^2.1.2",
         "imagemin": "^6.1.0",
+        "imagemin-webp": "^5.1.0",
         "jquery.actual": "git+https://github.com/dreamerslab/jquery.actual.git",
+        "laravel-mix-purgecss": "^4.1.0",
         "material-design-icons": "^3.0.1",
         "promise-polyfill": "^8.1.0",
         "scrollreveal": "^4.0.5",
