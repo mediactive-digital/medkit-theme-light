@@ -193,7 +193,7 @@ const default_folders = {
                           jsonStr[keyInManifest] = { 'file' : key, 'hash': that.getTheHash(element) };
                       }
                       else {
-                          jsonStr[keyInManifest] = { 'file' : key, 'hash': that.getTheHash(element) };
+                          jsonStr[''+that.getExt(file) + '.' + that.getNameFile(file)+''] = { 'file' : key, 'hash': that.getTheHash(element) };
                       }
                   }
               }

@@ -14,11 +14,11 @@ class MedKitThemeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'mediactivedigital');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'mediactivedigital');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
+        $this->loadViewsFrom(__DIR__.'/views', 'medKitTheme');
 
+        $this->publishes([
+            __DIR__.'/views' => resource_path('views/vendor/medKitTheme'),
+        ]);
         // Publishing is only necessary when using the CLI.
         if ($this->app->runningInConsole()) {
             $this->bootForConsole();
@@ -54,7 +54,7 @@ class MedKitThemeServiceProvider extends ServiceProvider
     {
         return ['medkittheme'];
     }
-    
+
     /**
      * Console-specific booting.
      *
