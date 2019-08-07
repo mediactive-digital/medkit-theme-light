@@ -184,10 +184,14 @@ const default_folders = {
                       // console.log('element', element)
                       var file = that.getFile(key);
 
-
                       var tmpPath = require('path').dirname(key);
 
-                      var keyInManifest = that.getExt(file)+'.'+tmpPath.substring(tmpPath.indexOf('/',2) + 1).replace(/\W/g, ".")+'.'+that.getNameFile(file);
+                      var dirSeparator = '/';
+                      if(tmpPath.includes("\\")){
+                          var dirSeparator = "\\";
+                      }
+
+                      var keyInManifest = that.getExt(file)+'.'+tmpPath.substring(tmpPath.indexOf(dirSeparator,2) + 1).replace(/\W/g, ".")+'.'+that.getNameFile(file);
 
                       if(that.isFrontorBack(element) === that.folders.front || that.isFrontorBack(element) === that.folders.back) {
                           jsonStr[keyInManifest] = { 'file' : key, 'hash': that.getTheHash(element) };
