@@ -39,7 +39,7 @@ const default_folders = {
     customJsPath : '',
     customSassPath : ''
  }
- 
+
  const default_opts = {
      typeLoad : 'basic', // front / back / custom / basic
      recursive : true, // tell how the file finder work
@@ -49,7 +49,7 @@ const default_folders = {
      },
      webp: false, // tell if you wants images webp generation for your projet
      webpOptions: { // options of this plugins to generate webp formats https://github.com/imagemin/imagemin-webp
-         quality: 70 
+         quality: 70
      },
      mixOverride : (mixInstance) => {} // a hook to surcache mix options like mix.webpackConfig()
   }
@@ -79,7 +79,7 @@ const default_folders = {
       }
       assets() {
         let allLinks = new Array();
-        
+
         switch (this.options.typeLoad) {
             case 'all':
                 allLinks = [this.paths.jsPathBack, this.paths.jsPathFront, this.paths.sassPathBack, this.paths.sassPathFront]
@@ -96,7 +96,7 @@ const default_folders = {
             case 'custom':
                 allLinks = [this.paths.customJsPath, this.paths.customSassPath]
                 break;
-        
+
             default:
                 break;
         }
@@ -124,9 +124,9 @@ const default_folders = {
                     if(that.isFile(full_path) === true) {
                         filelist.push(path.join(dir, file));
                     }
-                    
+
                 }
-                
+
             });
             //  console.log('debug folder recursive', filelist)
             return filelist;
@@ -155,7 +155,7 @@ const default_folders = {
       }
       getExt(str) {
         var fileSpl = str.split('.');
-        var filetoTest = fileSpl[fileSpl.length - 1];  
+        var filetoTest = fileSpl[fileSpl.length - 1];
         return filetoTest;
       }
       isFrontorBack(str) {
@@ -166,42 +166,46 @@ const default_folders = {
           if(str.includes(this.folders.front) == true) {
             rt = this.folders.front;
           }
-          return rt 
+          return rt
       }
       getTheHash(str) {
         let strSpl = str.split('?id=');
         return strSpl[strSpl.length - 1];
       }
       manifestProcess() {
-        let mixManifest = path.join(this.folders.public, 'mix-manifest.json');
-        var that = this; 
-        jsonfile.readFile(mixManifest, function (err, obj) {
-            // console.log('obj manifest', obj)
-            var jsonStr = {};
-            for (const key in obj) {
-                if (obj.hasOwnProperty(key)) {
-                    const element = obj[key];
-                    // console.log('element', element)
-                    var file = that.getFile(key);
+          let mixManifest = path.join(this.folders.public, 'mix-manifest.json');
+          var that = this;
+          jsonfile.readFile(mixManifest, function (err, obj) {
+              // console.log('obj manifest', obj)
+              var jsonStr = {};
+              for (const key in obj) {
+                  if (obj.hasOwnProperty(key)) {
+                      const element = obj[key];
+                      // console.log('element', element)
+                      var file = that.getFile(key);
 
-                    if(that.isFrontorBack(element) === that.folders.front || that.isFrontorBack(element) === that.folders.back) {
-                        jsonStr[''+that.isFrontorBack(element)+ '.' + that.getExt(file) +'.'+that.getNameFile(file)+''] = { 'file' : key, 'hash': that.getTheHash(element) };
-                    }
-                    else {
-                        jsonStr[''+that.getExt(file) + '.' + that.getNameFile(file)+''] = { 'file' : key, 'hash': that.getTheHash(element) };
-                    } 
-                }
-            }
-            
-            
-            jsonfile.writeFile(path.join(that.folders.public, 'mdassets-autoload.json'), jsonStr, {spaces: 2}, function (err) {
-                if (err) console.error(err);
-            });
-        });
+
+                      var tmpPath = require('path').dirname(key);
+
+                      var keyInManifest = that.getExt(file)+'.'+tmpPath.substring(tmpPath.indexOf('/',2) + 1).replace(/\W/g, ".")+'.'+that.getNameFile(file);
+
+                      if(that.isFrontorBack(element) === that.folders.front || that.isFrontorBack(element) === that.folders.back) {
+                          jsonStr[keyInManifest] = { 'file' : key, 'hash': that.getTheHash(element) };
+                      }
+                      else {
+                          jsonStr[keyInManifest] = { 'file' : key, 'hash': that.getTheHash(element) };
+                      }
+                  }
+              }
+
+              jsonfile.writeFile(path.join(that.folders.public, 'mdassets-autoload.json'), jsonStr, {spaces: 2}, function (err) {
+                  if (err) console.error(err);
+              });
+          });
       }
       mixWorker(links) {
-        
-        this.options.mixOverride(mix); 
+
+        this.options.mixOverride(mix);
 
         if (!mix.inProduction()) {
 
@@ -210,7 +214,7 @@ const default_folders = {
             })
             .sourceMaps();
         }
-        
+
 
         if(this.options.webp) {
             imagemin(['/'+ this.folders.resources + this.folders.assets + this.folders.images + '/*.{jpg,png}'], path.join(this.folders.public , this.folders.images) , {
@@ -221,9 +225,9 @@ const default_folders = {
                 console.log('Images optimized');
             });
         }
-        
+
         console.log('links', links)
-        
+
         links.forEach((linked) => {
             mix[linked.type === 'js' ? 'js' : 'sass'](linked.pathFile, linked.pathDest).purgeCss(this.options.purgeCssOptions).version()
         })
@@ -240,7 +244,7 @@ const default_folders = {
         var transformed_link = '';
         var file = this.getFile(link);
         var extension = this.getExt(file);
-        
+
         var name = this.getNameFile(file);
         extension === 'scss' || extension === 'sass' ? transformed_link = link.replace( path.join(this.folders.resources, this.folders.assets) , path.join(this.folders.public)).replace( file , name+'.'+'css' ) : transformed_link = link.replace( path.join(this.folders.resources, this.folders.assets) , path.join(this.folders.public));
         return transformed_link;
@@ -262,24 +266,24 @@ const default_folders = {
                 }
             })
         // console.log('link builder ouput', builder)
-        
+
         return builder;
       }
       localize(links) {
-        let that = this; 
+        let that = this;
         if(!links) {
             throw new Error('An array of links must be given');
         }
-        let fileLocated = new Array(); 
+        let fileLocated = new Array();
         links.forEach((link) => {
             var localFileLocalizated;
             that.options.recursive === true ? localFileLocalizated = this.walker(link, [], true) : localFileLocalizated = this.walker(link, [], false);
             that.options.recursive === true ? this.linkBuilder(localFileLocalizated) : this.linkBuilder(localFileLocalizated);
             Array.prototype.push.apply(fileLocated, this.linkBuilder(localFileLocalizated, true));
-            
+
         })
         return fileLocated;
-        
+
       }
       fileAnalyser(link) {
         let rt = {mime: '', compile: ''};
@@ -304,12 +308,12 @@ const default_folders = {
             throw new Error('File type is not recognized (File: '+ file +')');
         }
         return rt;
-      }      
+      }
       isDir(pth) {
         let rt = false;
         var stat = fs.lstatSync(pth);
         if(stat.isDirectory()) {
-            rt = true; 
+            rt = true;
         }
         return rt;
       }
