@@ -1,0 +1,1 @@
+@include('medKitTheme::emails.email')
