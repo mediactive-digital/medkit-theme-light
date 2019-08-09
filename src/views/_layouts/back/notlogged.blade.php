@@ -54,13 +54,7 @@
     <!-- General Theme script -->
     {!! MDAsset::addJs('back.default') !!}
 
-
-
     <!-- Custom scripts required -->
     @stack('scripts')
-
-    {!! MDAsset::addJs('back.default') !!}
-
-    @stack('post-scripts')
 </body>
 </html>

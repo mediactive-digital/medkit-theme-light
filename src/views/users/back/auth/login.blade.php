@@ -7,13 +7,13 @@
 
         <div class="card-body">
             <div class="row">
-				{!! form_start($form) !!}
-				{!! form_row($form->login) !!}
-				{!! form_row($form->password) !!}
-				{!! form_row($form->remember) !!}
-				{!! form_row($form->submit) !!}
-				{!! form_rest($form) !!}
+                <div class="col-md-6 mx-auto">
+                    {!! form($form) !!}
+                </div>
             </div>
+        </div>
+        <div class="card-footer bg-transparent border-transparent text-right">
+            <a href="{{ route('back.password.request') }}">{{ _i('Mot de passe oublié ?') }}</a>
         </div>
     </div>
 </div>

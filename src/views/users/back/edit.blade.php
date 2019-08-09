@@ -41,6 +41,6 @@
 
 @endsection
 
-@push('post-scripts')
+@push('scripts')
     {!! MDAsset::addJs('back.users') !!}
 @endpush
