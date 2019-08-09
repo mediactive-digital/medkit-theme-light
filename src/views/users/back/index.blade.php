@@ -33,9 +33,5 @@
 @endsection
 
 @push('scripts')
-    {!! MDAsset::addJs(['datatables.main', 'datatables.bootstrap.main', 'datatables.fixheader', 'datatables.responsive', 'datatables.bootstrap.responsive']) !!}
-@endpush
-
-@push('post-scripts')
-    {!! MDAsset::addJs('back.users') !!}
+    {!! MDAsset::addJs(['datatables.main', 'datatables.bootstrap.main', 'datatables.fixheader', 'datatables.responsive', 'datatables.bootstrap.responsive', 'back.users']) !!}
 @endpush

@@ -13,8 +13,8 @@
 
         <div class="card-body">
             <div class="alert alert-info">
-                {{ _i('Veuillez saisir votre adresse email pour réinitialiser votre mot de passe') }}.<br />
-                {{ _i('Vous recevrez les instructions dans quelques instants') }}.
+                {{ _i('Veuillez saisir votre adresse email pour réinitialiser votre mot de passe.') }}<br />
+                {{ _i('Vous recevrez les instructions dans quelques instants.') }}
             </div>
 
             <div class="row">
