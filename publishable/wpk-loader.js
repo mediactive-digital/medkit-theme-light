@@ -6,23 +6,19 @@ require('laravel-mix-purgecss');
 const imagemin = require('imagemin');
 const imageminWebp = require('imagemin-webp');
 const jsonfile = require('jsonfile');
-const os = require('os');
-
-
-
 
 const default_mix_options = {
-	postCss: [require('autoprefixer')({
-		browsers: ['last 5 versions'],
-		flexbox: "no-2009"
-	})],
-	terser: {
-		parallel: 8, // Use multithreading for the processing
-		terserOptions: {
-			mangle: true,
-			compress: true // The slow bit
-		}
-	}
+  postCss: [require('autoprefixer')({
+    browsers: ['last 5 versions'],
+    flexbox: "no-2009"
+  })],
+  terser: {
+    parallel: 8, // Use multithreading for the processing
+    terserOptions: {
+      mangle: true,
+      compress: true // The slow bit
+    }
+  }
 }
 
 const default_folders = {
@@ -134,7 +130,7 @@ const default_folders = {
       isFile(str) {
         let rt = false;
         // // console.log('isFile debug', str)
-        var fileSpl = os.platform() != 'win32' ? str.split('/') : str.split('\\');
+        var fileSpl = str.replace(/\\/g, '/').split('/');
         var filetoTest = fileSpl[fileSpl.length - 1];
         // console.log('file to test', filetoTest)
         if(filetoTest.endsWith('.js') || filetoTest.endsWith('.sass') || filetoTest.endsWith('.scss')) {
@@ -143,8 +139,7 @@ const default_folders = {
         return rt;
       }
       getFile(str) {
-        //   console.log('hostname os', os.platform())
-        var fileSpl =  os.platform() != 'win32' ? str.split('/') : str.split('\\');
+        var fileSpl =  str.replace(/\\/g, '/').split('/');
         var filetoTest = fileSpl[fileSpl.length - 1];
         return filetoTest;
       }
@@ -180,18 +175,14 @@ const default_folders = {
               var jsonStr = {};
               for (const key in obj) {
                   if (obj.hasOwnProperty(key)) {
+
                       const element = obj[key];
-                      // console.log('element', element)
+                      // console.log('element', element);
+
                       var file = that.getFile(key);
-
-                      var tmpPath = require('path').dirname(key);
-
                       var dirSeparator = '/';
-                      if(tmpPath.includes("\\")){
-                          var dirSeparator = "\\";
-                      }
-
-                      var keyInManifest = that.getExt(file)+'.'+tmpPath.substring(tmpPath.indexOf(dirSeparator,2) + 1).replace(/\W/g, ".")+'.'+that.getNameFile(file);
+                      var tmpPath = require('path').dirname(key).replace(/\\/g, dirSeparator);
+                      var keyInManifest = that.getExt(file) + '.' + tmpPath.substring(tmpPath.indexOf(dirSeparator, 2) + 1).replace(/\W/g, '.') + '.' + that.getNameFile(file);
 
                       if(that.isFrontorBack(element) === that.folders.front || that.isFrontorBack(element) === that.folders.back) {
                           jsonStr[keyInManifest] = { 'file' : key, 'hash': that.getTheHash(element) };
@@ -251,7 +242,7 @@ const default_folders = {
 
         var name = this.getNameFile(file);
         extension === 'scss' || extension === 'sass' ? transformed_link = link.replace( path.join(this.folders.resources, this.folders.assets) , path.join(this.folders.public)).replace( file , name+'.'+'css' ) : transformed_link = link.replace( path.join(this.folders.resources, this.folders.assets) , path.join(this.folders.public));
-        return transformed_link;
+        return transformed_link.replace(this.folders.sass, this.folders.css);
       }
       linkBuilder(links, mode) {
         let builder = [];
@@ -291,7 +282,7 @@ const default_folders = {
       }
       fileAnalyser(link) {
         let rt = {mime: '', compile: ''};
-        var fileSpl = os.platform() != 'win32' ? link.split('/') : link.split('\\');
+        var fileSpl = link.replace(/\\/g, '/').split('/');
         var file = fileSpl[fileSpl.length - 1];
         if(file.endsWith('.sass') && !file.startsWith('_') || file.endsWith('.scss') && !file.startsWith('_')) {
             rt = { mime : 'sass', compile: true };
