@@ -150,7 +150,9 @@ const default_folders = {
       }
       getExt(str) {
         var fileSpl = str.split('.');
-        var filetoTest = fileSpl[fileSpl.length - 1];
+        var filetoTest;
+        fileSpl[fileSpl.length - 1] === 'map' ? filetoTest = fileSpl[fileSpl.length - 2]+'.'+fileSpl[fileSpl.length - 1] : filetoTest = fileSpl[fileSpl.length - 1];
+    
         return filetoTest;
       }
       isFrontorBack(str) {
