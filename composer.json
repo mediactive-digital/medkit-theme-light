@@ -12,15 +12,15 @@
     "homepage": "https://github.com/mediactive-digital/medkit-theme-light",
     "keywords": ["Laravel", "MedKit", "boilerplate"],
     "require": {
-        "illuminate/support": "~5",
-        "lavary/laravel-menu" : "^1.7",
+        "illuminate/support": "*",
+        "lavary/laravel-menu" : "*",
         "mediactive-digital/medkit" : "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "~7.0",
-        "mockery/mockery": "^1.1",
-        "orchestra/testbench": "~3.0",
-        "sempro/phpunit-pretty-print": "^1.0"
+        "phpunit/phpunit": "*",
+        "mockery/mockery": "*",
+        "orchestra/testbench": "*",
+        "sempro/phpunit-pretty-print": "*"
     },
     "autoload": {
         "psr-4": {
