@@ -10,7 +10,7 @@
         @endphp
 
         <li@lm-attrs($item) class="{{ $class }}" @lm-endattrs>
-            @if($link) 
+            @if($link)
 
                 @php
 
@@ -40,8 +40,7 @@
 
             @if($hasChildren)
 
-                @include(config('laravel-menu.views.back.sidebar'), array('items' => $item->children()))
-
+                @include('medKitTheme::_layouts.back.menu.sidebar', array('items' => $item->children()))
             @endif
         </li>
 
