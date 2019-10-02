@@ -7,5 +7,5 @@
 	@php
 		// dd(config('laravel-menu.views.back.sidebar'));
 	@endphp
-	@include(config('laravel-menu.views.back.sidebar'), ['items' => $menu->roots()])
+	@include('medKitTheme::_layouts.back.menu.sidebar', ['items' => $menu->roots()])
 </nav>
